@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f8f8f7">
+<meta name="description" content="KV Freight Services — one integrated network, from origin to destination.">
+<title>KV — Freight, in motion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#101114;--blue:#315fff;--paper:#f7f7f5;--muted:#9b9da2;--gutter:clamp(20px,4.2vw,64px)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--paper);scroll-padding-top:24px}
+body{margin:0;color:var(--ink);font-family:Archivo,Arial,sans-serif;overflow-x:hidden;background:var(--paper);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.site-nav{position:absolute;z-index:20;top:clamp(18px,2.5vw,34px);left:var(--gutter);right:var(--gutter);display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{display:inline-block;text-decoration:none;font:700 clamp(28px,2.2vw,36px)/.9 Archivo,sans-serif;letter-spacing:-.08em}
+.nav-right{display:flex;align-items:center;gap:clamp(14px,2.25vw,32px);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.nav-right a{text-decoration:none;white-space:nowrap}
+.nav-menu{letter-spacing:0;text-transform:none;font-size:12px}
+.nav-pill{border:1px solid rgba(16,17,20,.68);border-radius:999px;padding:12px 18px;transition:background .2s,color .2s}
+.nav-pill:hover{background:var(--ink);color:white}
+.hero{position:relative;isolation:isolate;width:100%;height:100svh;min-height:560px;max-height:980px;overflow:hidden;background:linear-gradient(180deg,#fbfbfa 0%,#f4f5f6 100%)}
+.hero::after{content:"";position:absolute;z-index:4;left:0;right:0;bottom:0;height:1px;background:rgba(16,17,20,.15);pointer-events:none}
+.fallback-scene{position:absolute;inset:0;z-index:1;width:100%;height:100%;display:block;transition:opacity .25s ease}
+.fallback-scene svg{display:block;width:100%;height:100%}
+.wheel-spin{transform-box:fill-box;transform-origin:center;animation:wheelSpin .72s linear infinite}
+@keyframes wheelSpin{to{transform:rotate(360deg)}}
+.hero.three-ready .fallback-scene{opacity:0}
+#three-scene{position:absolute;inset:0;z-index:2;overflow:hidden;pointer-events:none}
+#three-scene canvas{display:block;width:100%;height:100%}
+.hero-label{position:absolute;z-index:6;top:clamp(94px,10vh,124px);left:var(--gutter);display:flex;flex-direction:column;gap:9px;pointer-events:none}
+.eyebrow{font:500 10px/1.3 'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;color:#686a6f}
+.hero-label strong{font-size:clamp(13px,1vw,16px);font-weight:600;letter-spacing:-.02em}
+.hero-code{position:absolute;z-index:6;top:clamp(96px,10vh,124px);right:var(--gutter);text-align:right;display:flex;flex-direction:column;gap:7px;pointer-events:none}
+.hero-code strong{font:500 10px/1.4 'JetBrains Mono',monospace;letter-spacing:.08em}
+.hero-code span{font-size:10px;color:#85878c;letter-spacing:.08em;text-transform:uppercase}
+.scroll-cue{position:absolute;z-index:6;bottom:26px;right:var(--gutter);display:flex;align-items:center;gap:12px;font:500 9px/1 'JetBrains Mono',monospace;letter-spacing:.13em;color:#5f6268;text-transform:uppercase;text-decoration:none}
+.scroll-cue i{font-style:normal;font-size:17px;animation:cue 1.2s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:translateY(0)}50%{transform:translateY(4px)}}
+.intro{padding:clamp(64px,9vw,132px) var(--gutter);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(260px,.65fr);gap:clamp(32px,7vw,110px);align-items:end;background:#fbfbfa}
+.intro-kicker{margin:0 0 20px;font:500 10px/1.2 'JetBrains Mono',monospace;letter-spacing:.14em;color:#707278;text-transform:uppercase}
+.intro h1{max-width:850px;margin:0;font:400 clamp(54px,8.1vw,124px)/.82 Anton,Impact,sans-serif;letter-spacing:-.035em;text-transform:uppercase}
+.intro h1 span{color:var(--blue)}
+.intro-copy{max-width:410px;padding-bottom:6px}
+.intro-copy p{margin:0 0 18px;font-size:clamp(14px,1.15vw,16px);line-height:1.7;color:#64666b}
+.intro-copy p:last-child{margin-bottom:0}
+.services{background:var(--ink);color:#f5f5f4;padding:clamp(66px,8vw,118px) var(--gutter) clamp(70px,8vw,120px)}
+.services-head{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(240px,.55fr);gap:38px;align-items:end;margin-bottom:clamp(42px,5vw,72px)}
+.section-index{font:500 10px/1.4 'JetBrains Mono',monospace;letter-spacing:.14em;color:#a5a6aa;text-transform:uppercase;margin:0 0 20px}
+.services-head h2{margin:0;max-width:900px;font:400 clamp(44px,6.5vw,92px)/.88 Anton,Impact,sans-serif;letter-spacing:-.025em;text-transform:uppercase}
+.services-head h2 span{color:var(--blue)}
+.services-summary{max-width:390px;margin:0 0 4px;color:#a6a8ad;font-size:14px;line-height:1.7}
+.service-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid rgba(255,255,255,.22);border-bottom:1px solid rgba(255,255,255,.22)}
+.service-card{min-width:0;min-height:290px;padding:28px clamp(14px,1.8vw,26px) 30px;border-left:1px solid rgba(255,255,255,.16);display:flex;flex-direction:column;align-items:flex-start}
+.service-card:first-child{border-left:0;padding-left:0}
+.service-card:last-child{padding-right:0}
+.service-icon{width:34px;height:34px;color:#f6f6f5;margin-bottom:36px;flex:0 0 auto}
+.service-card h3{margin:0 0 15px;font:400 clamp(24px,2.1vw,31px)/.93 Anton,Impact,sans-serif;letter-spacing:-.015em}
+.service-card p{margin:0;max-width:230px;color:#a8a9ae;font-size:13px;line-height:1.65}
+.service-card .num{margin-top:auto;padding-top:30px;color:#6f7279;font:400 10px/1 'JetBrains Mono',monospace;letter-spacing:.1em}
+.services-foot{display:flex;justify-content:space-between;align-items:center;gap:24px;padding-top:24px;color:#85878c;font:400 10px/1.5 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+.services-foot a{color:#f5f5f4;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:4px;white-space:nowrap}
+.footer{background:#f1f2f2;padding:32px var(--gutter);display:flex;justify-content:space-between;align-items:center;gap:20px;color:#686a6e;font:400 10px/1.5 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+.footer strong{font:700 23px/1 Archivo,sans-serif;letter-spacing:-.08em;color:var(--ink)}
+@media(max-width:1100px){
+ .service-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .service-card:nth-child(4){border-left:0}
+ .service-card:nth-child(n+4){border-top:1px solid rgba(255,255,255,.16)}
+ .service-card:nth-child(4),.service-card:nth-child(5){min-height:250px}
+ .service-card:nth-child(5){grid-column:auto}
+}
+@media(max-width:760px){
+ :root{--gutter:22px}
+ .hero{height:100svh;min-height:540px;max-height:900px}
+ .nav-right{gap:12px;font-size:9px;letter-spacing:.08em}
+ .nav-right .follow{display:none}
+ .nav-pill{padding:10px 12px}
+ .nav-menu{font-size:11px}
+ .hero-label{top:88px;gap:7px}
+ .hero-label strong{font-size:12px}
+ .hero-code{top:88px}
+ .hero-code span{font-size:9px}
+ .scroll-cue{bottom:20px;gap:8px;font-size:8px}
+ .intro{grid-template-columns:1fr;gap:32px;padding-top:66px;padding-bottom:70px}
+ .intro h1{font-size:clamp(56px,12vw,86px);line-height:.85}
+ .intro-copy{max-width:560px}
+ .services{padding-top:66px;padding-bottom:68px}
+ .services-head{grid-template-columns:1fr;gap:26px;margin-bottom:38px}
+ .services-head h2{font-size:clamp(46px,10vw,70px)}
+ .services-summary{font-size:13px;max-width:520px}
+ .service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .service-card{min-height:250px;padding:24px 18px 24px}
+ .service-card:first-child{padding-left:0}
+ .service-card:nth-child(3),.service-card:nth-child(5){border-left:0;padding-left:0}
+ .service-card:nth-child(4){border-left:1px solid rgba(255,255,255,.16)}
+ .service-card:nth-child(3){border-top:1px solid rgba(255,255,255,.16)}
+ .service-card:nth-child(4){border-top:1px solid rgba(255,255,255,.16)}
+ .service-card:nth-child(5){border-top:1px solid rgba(255,255,255,.16);grid-column:1/-1;min-height:220px}
+ .service-card h3{font-size:28px}
+ .service-card p{font-size:12px}
+ .service-icon{margin-bottom:28px}
+}
+@media(max-width:420px){
+ :root{--gutter:17px}
+ .site-nav{gap:12px}
+ .logo{font-size:27px}
+ .nav-right{gap:9px;font-size:8px}
+ .nav-pill{padding:9px 10px}
+ .hero-label{top:83px}
+ .hero-code{display:none}
+ .hero-code strong{font-size:9px}
+ .hero-code span{max-width:100px;line-height:1.35;margin-left:auto}
+ .intro h1{font-size:54px}
+ .service-card{padding-right:12px;padding-left:12px}
+ .service-card:first-child,.service-card:nth-child(3),.service-card:nth-child(5){padding-left:0}
+ .service-card h3{font-size:25px}
+ .service-card p{font-size:11px}
+ .services-foot{align-items:flex-start;flex-direction:column;gap:14px}
+ .footer{align-items:flex-start;flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.scroll-cue i{animation:none}}
+</style>
+</head>
+<body>
+<header class="hero" id="top" aria-label="KV Freight Services hero">
+  <nav class="site-nav" aria-label="Main navigation">
+    <a class="logo" href="#top" aria-label="KV home">KV</a>
+    <div class="nav-right">
+      <a class="nav-menu" href="#services">→ Menu</a>
+      <a class="follow" href="#follow">Follow</a>
+      <a class="nav-pill" href="mailto:hello@kv-freight.example">Work with us</a>
+    </div>
+  </nav>
+  <div class="hero-label"><span class="eyebrow">International logistics / 01—05</span><strong>One network. Every destination.</strong></div>
+  <div class="hero-code"><strong>KV / FREIGHT</strong><span>Built to keep goods moving</span></div>
+    <div class="fallback-scene" id="fallbackScene" aria-hidden="true">
+      <svg viewBox="0 0 1600 700" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="trailerMetal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8f9fa"/><stop offset=".38" stop-color="#dfe3e6"/><stop offset="1" stop-color="#aeb6bd"/></linearGradient>
+          <linearGradient id="trailerTop" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#cbd1d6"/></linearGradient>
+          <linearGradient id="cabPaint" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#3e4d5b"/><stop offset=".45" stop-color="#1c2935"/><stop offset="1" stop-color="#080e13"/></linearGradient>
+          <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#a8d2e2"/><stop offset=".55" stop-color="#314858"/><stop offset="1" stop-color="#111d27"/></linearGradient>
+          <radialGradient id="tire"><stop offset="0" stop-color="#656a6f"/><stop offset=".42" stop-color="#25292d"/><stop offset=".78" stop-color="#090b0d"/><stop offset="1" stop-color="#30353a"/></radialGradient>
+          <linearGradient id="chassis" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#68727b"/><stop offset="1" stop-color="#1b2228"/></linearGradient>
+          <filter id="softShadow" x="-20%" y="-100%" width="140%" height="300%"><feGaussianBlur stdDeviation="13"/></filter>
+        </defs>
+        <rect width="1600" height="700" fill="#fff"/>
+        <ellipse cx="795" cy="505" rx="620" ry="22" fill="#17212a" opacity=".14" filter="url(#softShadow)"/>
+        <g class="truck-motion">
+          <animateTransform attributeName="transform" type="translate" values="85 0;-35 0;85 0" keyTimes="0;0.5;1" dur="8s" repeatCount="indefinite"/>
+          <!-- undercarriage and trailer -->
+          <path d="M170 416 L1157 416 L1192 444 L1175 465 L204 465 Z" fill="url(#chassis)"/>
+          <rect x="220" y="433" width="890" height="18" rx="3" fill="#303941"/>
+          <rect x="290" y="451" width="78" height="22" rx="3" fill="#49525a"/>
+          <rect x="865" y="450" width="95" height="20" rx="3" fill="#4b555e"/>
+          <rect x="985" y="450" width="90" height="20" rx="3" fill="#4b555e"/>
+          <!-- trailer top and body, in shallow perspective -->
+          <path d="M145 254 L1106 254 L1158 278 L193 278 Z" fill="url(#trailerTop)" stroke="#9ca5ad" stroke-width="2"/>
+          <path d="M145 254 L1106 254 L1158 278 L1158 423 L193 423 L145 398 Z" fill="url(#trailerMetal)" stroke="#8c969e" stroke-width="2"/>
+          <path d="M145 254 L193 278 L193 423 L145 398 Z" fill="#8d969d"/>
+          <path d="M193 278 L1158 278" stroke="#fff" stroke-width="3" opacity=".8"/>
+          <path d="M193 423 L1158 423" stroke="#7e8991" stroke-width="3"/>
+          <g stroke="#a8b0b7" stroke-width="3" opacity=".92">
+            <path d="M225 282V417 M251 282V417 M277 282V417 M303 282V417 M329 282V417 M355 282V417 M381 282V417 M407 282V417 M433 282V417 M459 282V417 M485 282V417 M511 282V417 M537 282V417 M563 282V417 M589 282V417 M615 282V417 M641 282V417 M667 282V417 M693 282V417 M719 282V417 M745 282V417 M771 282V417 M797 282V417 M823 282V417 M849 282V417 M875 282V417 M901 282V417 M927 282V417 M953 282V417 M979 282V417 M1005 282V417 M1031 282V417 M1057 282V417 M1083 282V417 M1109 282V417"/>
+          </g>
+          <g stroke="#fff" stroke-width="1.5" opacity=".75"><path d="M209 290H1145 M209 410H1145"/></g>
+          <rect x="176" y="280" width="10" height="134" fill="#7b858d"/>
+          <rect x="1129" y="284" width="13" height="130" fill="#7b858d"/>
+          <!-- fuel tanks and cab detail -->
+          <rect x="1160" y="415" width="116" height="25" rx="5" fill="#6e7881" stroke="#222a31" stroke-width="3"/>
+          <rect x="1180" y="420" width="76" height="12" rx="2" fill="#a7b0b7"/>
+          <path d="M1135 327 L1186 292 Q1196 286 1215 286 L1290 286 Q1310 287 1325 303 L1377 353 L1425 367 Q1447 376 1454 397 L1454 431 L1138 431 Z" fill="url(#cabPaint)" stroke="#111820" stroke-width="3"/>
+          <path d="M1200 301 L1284 301 Q1297 301 1307 313 L1341 352 L1193 352 Z" fill="url(#glass)" stroke="#111920" stroke-width="4"/>
+          <path d="M1292 302 L1305 311 L1338 351 L1304 351 Z" fill="#9dc4d3" opacity=".55"/>
+          <path d="M1187 295 L1187 412" stroke="#53616e" stroke-width="5"/>
+          <path d="M1141 372 L1419 372" stroke="#51606d" stroke-width="3" opacity=".75"/>
+          <path d="M1364 357 L1405 370 L1414 399 L1364 399 Z" fill="#1b252d"/>
+          <rect x="1409" y="382" width="32" height="24" rx="4" fill="#cbd3d8" stroke="#111820" stroke-width="3"/>
+          <rect x="1417" y="388" width="20" height="12" rx="2" fill="#f7e4a5"/>
+          <path d="M1139 407 H1452" stroke="#66717a" stroke-width="4"/>
+          <rect x="1174" y="397" width="10" height="24" rx="2" fill="#2d3944"/>
+          <path d="M1350 410 L1380 410 L1370 433 L1344 433 Z" fill="#10171d"/>
+          <rect x="1135" y="350" width="11" height="25" rx="3" fill="#66737d"/>
+          <path d="M1140 347 L1128 336 L1114 336 L1114 342 L1129 350 Z" fill="#303b44" stroke="#111820" stroke-width="2"/>
+          <!-- wheels -->
+          <g>
+            <g transform="translate(290 455)"><circle r="45" fill="url(#tire)"/><circle r="29" fill="#aeb7be" stroke="#11171c" stroke-width="5"/><circle r="18" fill="#555f68"/><circle r="7" fill="#c9d0d5"/><g class="wheel-spin" stroke="#424b53" stroke-width="4"><path d="M0 -25V-10 M0 10V25 M-25 0H-10 M10 0H25 M-18 -18L-8 -8 M8 8L18 18 M18 -18L8 -8 M-8 8L-18 18"/></g></g>
+            <g transform="translate(944 455)"><circle r="45" fill="url(#tire)"/><circle r="29" fill="#aeb7be" stroke="#11171c" stroke-width="5"/><circle r="18" fill="#555f68"/><circle r="7" fill="#c9d0d5"/><g class="wheel-spin" stroke="#424b53" stroke-width="4"><path d="M0 -25V-10 M0 10V25 M-25 0H-10 M10 0H25 M-18 -18L-8 -8 M8 8L18 18 M18 -18L8 -8 M-8 8L-18 18"/></g></g>
+            <g transform="translate(1047 455)"><circle r="45" fill="url(#tire)"/><circle r="29" fill="#aeb7be" stroke="#11171c" stroke-width="5"/><circle r="18" fill="#555f68"/><circle r="7" fill="#c9d0d5"/><g class="wheel-spin" stroke="#424b53" stroke-width="4"><path d="M0 -25V-10 M0 10V25 M-25 0H-10 M10 0H25 M-18 -18L-8 -8 M8 8L18 18 M18 -18L8 -8 M-8 8L-18 18"/></g></g>
+            <g transform="translate(1361 455)"><circle r="45" fill="url(#tire)"/><circle r="29" fill="#aeb7be" stroke="#11171c" stroke-width="5"/><circle r="18" fill="#555f68"/><circle r="7" fill="#c9d0d5"/><g class="wheel-spin" stroke="#424b53" stroke-width="4"><path d="M0 -25V-10 M0 10V25 M-25 0H-10 M10 0H25 M-18 -18L-8 -8 M8 8L18 18 M18 -18L8 -8 M-8 8L-18 18"/></g></g>
+          </g>
+          <!-- safety markings and small finishing details -->
+          <path d="M196 424H1158" stroke="#d7dce0" stroke-width="4" stroke-dasharray="18 11"/>
+          <rect x="151" y="392" width="18" height="14" rx="2" fill="#d23a36"/>
+          <rect x="147" y="392" width="5" height="14" fill="#f4f4f4"/>
+          <rect x="1431" y="412" width="18" height="9" rx="2" fill="#d63d39"/>
+          <path d="M1286 431L1272 448H1205L1217 431Z" fill="#111920"/>
+        </g>
+        <line x1="0" y1="524" x2="1600" y2="524" stroke="#e6e7e8" stroke-width="2"/>
+      </svg>
+    </div>
+  <div id="three-scene" aria-hidden="true"></div>
+  <a class="scroll-cue" href="#intro">Scroll to explore <i>↓</i></a>
+</header>
+<main>
+  <section class="intro" id="intro" aria-labelledby="intro-title">
+    <div>
+      <p class="intro-kicker">A single point of connection</p>
+      <h1 id="intro-title">FREIGHT,<br>IN <span>MOTION.</span></h1>
+    </div>
+    <div class="intro-copy">
+      <p>From air to sea, from customs clearance to the last mile, we bring decades of practice to every freight discipline.</p>
+      <p>One integrated network means one partner, one point of contact and full visibility from origin to destination.</p>
+    </div>
+  </section>
+  <section class="services" id="services" aria-labelledby="services-title">
+    <div class="services-head">
+      <div>
+        <p class="section-index">02 / Our services</p>
+        <h2 id="services-title">EVERYTHING YOUR FREIGHT NEEDS. <span>UNDER ONE GROUP.</span></h2>
+      </div>
+      <p class="services-summary">A coordinated set of freight services, designed to work as one connected operation — across borders, modes and milestones.</p>
+    </div>
+    <div class="service-grid">
+      <article class="service-card">
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M3 22.5 16 19 25 5.5c1.4-2.2 4.8-1.6 4.6 1.3L28 16l8.5-2.3c2.1-.6 3.7 1.8 2.1 3.3L27 27l-1.7 8.2-4.5 2.1-1.2-8.4-9.3 3.5-3.2-2.1 5.7-6.5L3 22.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <h3>Air<br>freight</h3><p>Express, priority and deferred options across global lanes, booked and tracked end to end.</p><span class="num">SERVICE / 01</span>
+      </article>
+      <article class="service-card">
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M4 24h32l-4 8H10l-6-8Z M8 20V9h19v11M13 9V5h9v4M27 14h5l4 10M3 35c3-2 5-2 8 0s5 2 8 0 5-2 8 0 5 2 10 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Ocean<br>freight</h3><p>FCL and LCL sailings on major trade lanes, with carrier choice based on cost and transit time.</p><span class="num">SERVICE / 02</span>
+      </article>
+      <article class="service-card">
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M10 4h15l7 7v25H10V4Z M25 4v8h7M15 18h12M15 23h12M15 28h7" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m23 31 3 3 6-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Customs<br>brokerage</h3><p>Licensed in-house brokers for classification, duties and inspections, so goods clear first time.</p><span class="num">SERVICE / 03</span>
+      </article>
+      <article class="service-card">
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M3 17 20 6l17 11v18H3V17Z M9 21h6v7H9zM18 21h6v7h-6zM27 21h5v7h-5zM1 35h38" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <h3>Warehousing<br>and 3PL</h3><p>Bonded and general storage, pick and pack, and distribution that plugs into transport.</p><span class="num">SERVICE / 04</span>
+      </article>
+      <article class="service-card">
+        <svg class="service-icon" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M4 8h23M9 8v7M4 15h10M27 8v11l-5 6M22 25l5 5M27 19l7 7M12 15v8h8M20 23v8M5 34h30M11 31h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M27 8h8v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <h3>Project<br>cargo</h3><p>Oversized and heavy-lift moves, engineered and escorted from factory to foundation.</p><span class="num">SERVICE / 05</span>
+      </article>
+    </div>
+    <div class="services-foot"><span>From origin to destination — one connected network.</span><a href="mailto:hello@kv-freight.example">Talk to our team ↗</a></div>
+  </section>
+</main>
+<footer class="footer" id="follow"><strong>KV</strong><span>Freight, in motion. · International logistics</span><a href="#top" style="text-decoration:none">Back to top ↑</a></footer>
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script>
+(() => {
+  'use strict';
+  const hero = document.getElementById('top');
+  const threeHost = document.getElementById('three-scene');
+  let vw = window.innerWidth, vh = hero.clientHeight || window.innerHeight;
+  let renderer3d = null, scene3d = null, camera3d = null, truck3d = null, truckRig3d = null;
+  let wheelMeshes = [], movingBits = [], shadow3d = null, threeReady = false;
+  let cameraHome = null, truckBaseScale = 1;
+  let mobile3d = false;
+
+  function initThreeTruck() {
+    if (!threeHost || !window.THREE) return;
+    const T = window.THREE;
+    try {
+      renderer3d = new T.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+      renderer3d.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.65));
+      renderer3d.setSize(vw, vh, false);
+      renderer3d.setClearColor(0xffffff, 0);
+      renderer3d.outputColorSpace = T.SRGBColorSpace;
+      renderer3d.toneMapping = T.ACESFilmicToneMapping;
+      renderer3d.toneMappingExposure = 1.15;
+      threeHost.replaceChildren(renderer3d.domElement);
+
+      scene3d = new T.Scene();
+      camera3d = new T.PerspectiveCamera(38, Math.max(.1, vw / vh), .1, 100);
+      scene3d.add(new T.HemisphereLight(0xffffff, 0x8d9aaa, 2.1));
+      const key = new T.DirectionalLight(0xffffff, 3.0);
+      key.position.set(5, 9, 7); scene3d.add(key);
+      const rim = new T.DirectionalLight(0xb8d8ff, 1.65);
+      rim.position.set(-7, 5, -6); scene3d.add(rim);
+      const fill = new T.DirectionalLight(0xffffff, .85);
+      fill.position.set(-5, 2, 8); scene3d.add(fill);
+
+      const mat = (color, roughness=.62, metalness=.08) => new T.MeshStandardMaterial({ color, roughness, metalness });
+      const navy = mat(0x173f72, .42, .22);
+      const navyDark = mat(0x102b4d, .5, .15);
+      const blueRail = mat(0x3971b3, .4, .22);
+      const white = mat(0xe9edf0, .3, .2);
+      const whiteShade = mat(0xbac4ce, .4, .25);
+      const rubber = mat(0x14171b, .96, .02);
+      const tireSide = mat(0x30363d, .85, .03);
+      const metal = mat(0x9ba7b1, .33, .62);
+      const black = mat(0x10171f, .42, .32);
+      const glass = new T.MeshStandardMaterial({ color: 0x132c40, roughness: .18, metalness: .36, emissive: 0x09141f, emissiveIntensity: .22 });
+      const lightMat = new T.MeshStandardMaterial({ color: 0xfff0c2, emissive: 0xffca61, emissiveIntensity: 1.4, roughness: .25 });
+      const redLight = new T.MeshStandardMaterial({ color: 0xe94339, emissive: 0x69100b, emissiveIntensity: .55, roughness: .3 });
+      const box = (parent, size, pos, material, bevel=0) => {
+        const mesh = new T.Mesh(new T.BoxGeometry(size[0], size[1], size[2]), material);
+        mesh.position.set(pos[0], pos[1], pos[2]);
+        mesh.castShadow = true; mesh.receiveShadow = true;
+        parent.add(mesh); return mesh;
+      };
+      const cylinder = (parent, r1, r2, depth, pos, material, segments=28) => {
+        const mesh = new T.Mesh(new T.CylinderGeometry(r1, r2, depth, segments), material);
+        mesh.position.set(pos[0], pos[1], pos[2]);
+        parent.add(mesh); return mesh;
+      };
+
+      // Soft floor shadow: gives the model depth without relying on GPU shadow-map support.
+      const shadowMat = new T.MeshBasicMaterial({ color: 0x263440, transparent: true, opacity: .10, depthWrite: false });
+      shadow3d = new T.Mesh(new T.CircleGeometry(1, 64), shadowMat);
+      shadow3d.rotation.x = -Math.PI / 2;
+      shadow3d.position.set(-.15, .035, 0);
+      shadow3d.scale.set(5.6, 1.7, 1);
+      scene3d.add(shadow3d);
+
+      // Motion rig pivots around the truck's centre of mass, so turns and braking
+      // feel like vehicle movement instead of a flat object sliding on screen.
+      truckRig3d = new T.Group();
+      scene3d.add(truckRig3d);
+      truck3d = new T.Group();
+      truck3d.position.y = -1.8;
+      truckRig3d.add(truck3d);
+      truckRig3d.position.y = 1.8;
+      // Chassis, fifth-wheel coupling, tanks and mudguards.
+      box(truck3d, [8.0, .28, .72], [-.25, .92, 0], black);
+      box(truck3d, [5.95, .14, 1.7], [-1.25, 1.05, 0], metal);
+      box(truck3d, [1.2, .3, .92], [1.55, 1.12, 0], navyDark);
+      box(truck3d, [.75, .3, .58], [1.96, .8, 0], metal);
+      box(truck3d, [.85, .36, .52], [1.45, .64, .0], whiteShade);
+
+      // Large deep-blue freight container with crisp rails and vertical ribs.
+      box(truck3d, [5.8, 2.5, 2.18], [-1.25, 2.36, 0], navy);
+      box(truck3d, [5.9, .075, 2.23], [-1.25, 3.64, 0], blueRail);
+      box(truck3d, [5.9, .09, 2.23], [-1.25, 1.105, 0], navyDark);
+      box(truck3d, [5.82, .08, .08], [-1.25, 3.67, 1.10], metal);
+      box(truck3d, [5.82, .08, .08], [-1.25, 3.67, -1.10], metal);
+      for (let i = 0; i < 18; i++) {
+        const x = -4.0 + i * .325;
+        box(truck3d, [.035, 2.36, .055], [x, 2.36, 1.105], blueRail);
+        box(truck3d, [.035, 2.36, .055], [x, 2.36, -1.105], navyDark);
+      }
+      // Front/rear corner posts and container locking details.
+      for (const x of [-4.12, 1.62]) {
+        for (const z of [-1.12, 1.12]) {
+          box(truck3d, [.075, 2.47, .075], [x, 2.36, z], metal);
+          for (const y of [1.22, 3.45]) box(truck3d, [.11, .055, .11], [x, y, z], blueRail);
+        }
+      }
+      // KV branding on both long sides, drawn to a small transparent texture.
+      let brandTexture = null;
+      try {
+        const canvas = document.createElement('canvas'); canvas.width = 1024; canvas.height = 256;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'rgba(255,255,255,.94)';
+        ctx.font = '800 116px Arial, sans-serif'; ctx.fillText('KV', 26, 126);
+        ctx.fillStyle = 'rgba(222,237,255,.92)';
+        ctx.font = '600 34px Arial, sans-serif'; ctx.letterSpacing = '9px';
+        ctx.fillText('FREIGHT SERVICES', 235, 111);
+        ctx.fillStyle = '#5f96d4'; ctx.fillRect(235, 144, 510, 7);
+        ctx.fillStyle = 'rgba(255,255,255,.74)'; ctx.font = '500 21px Arial, sans-serif'; ctx.letterSpacing = '4px';
+        ctx.fillText('ONE NETWORK · EVERY DESTINATION', 235, 186);
+        brandTexture = new T.CanvasTexture(canvas); brandTexture.colorSpace = T.SRGBColorSpace;
+      } catch (_) {}
+      if (brandTexture) {
+        const decalMaterial = new T.MeshBasicMaterial({ map: brandTexture, transparent: true, depthWrite: false, side: T.DoubleSide });
+        const decal1 = new T.Mesh(new T.PlaneGeometry(4.5, 1.12), decalMaterial);
+        decal1.position.set(-1.25, 2.35, 1.101); truck3d.add(decal1);
+        const decal2 = new T.Mesh(new T.PlaneGeometry(4.5, 1.12), decalMaterial);
+        decal2.position.set(-1.25, 2.35, -1.101); decal2.rotation.y = Math.PI; truck3d.add(decal2);
+      }
+
+      // Tractor cab, aerodynamic roof, windscreen, doors and front fascia.
+      box(truck3d, [1.9, 1.65, 2.16], [2.57, 1.72, 0], white);
+      box(truck3d, [1.38, .52, 2.2], [3.18, 1.17, 0], whiteShade);
+      box(truck3d, [.88, .24, 2.18], [2.82, 2.62, 0], white);
+      box(truck3d, [.045, .67, 1.72], [3.54, 2.05, 0], glass);
+      box(truck3d, [.045, .58, .055], [3.57, 2.05, 0], metal);
+      // Side windows and doors on both sides.
+      for (const z of [-1.095, 1.095]) {
+        box(truck3d, [.62, .55, .04], [2.58, 2.17, z], glass);
+        box(truck3d, [.055, .62, .035], [2.23, 2.12, z * 1.018], whiteShade);
+        box(truck3d, [.35, .06, .04], [2.78, 1.68, z * 1.018], whiteShade);
+        box(truck3d, [.18, .035, .035], [2.99, 1.72, z * 1.02], metal);
+      }
+      // Grille, bumper, mirrors and headlights on the nose (+X).
+      box(truck3d, [.11, .49, 1.04], [3.89, 1.08, 0], navyDark);
+      for (let i = 0; i < 5; i++) box(truck3d, [.018, .035, .76], [3.952, .9 + i * .075, 0], metal);
+      box(truck3d, [.18, .19, 2.2], [3.86, .72, 0], whiteShade);
+      for (const z of [-.82, .82]) {
+        box(truck3d, [.09, .24, .35], [3.91, 1.37, z], lightMat);
+        box(truck3d, [.12, .11, .22], [3.91, 1.17, z * 1.12], redLight);
+        box(truck3d, [.24, .15, .12], [3.47, 2.14, z * 1.12], black);
+        box(truck3d, [.06, .14, .06], [3.5, 2.19, z * 1.15], metal);
+      }
+      // Rear lamps and reflective stripe.
+      for (const z of [-.82, .82]) {
+        box(truck3d, [.08, .32, .18], [-4.2, 1.0, z], redLight);
+        box(truck3d, [.05, .09, .2], [-4.2, 1.27, z], white);
+      }
+      box(truck3d, [5.65, .055, .025], [-1.25, 1.22, 1.12], whiteShade);
+
+      // Wheels: rubber tyres, detailed hubs, and animated axle groups.
+      const wheelPositions = [
+        [-3.05, -.99], [-3.05, .99], [-2.05, -.99], [-2.05, .99],
+        [1.36, -.99], [1.36, .99], [2.91, -1.08], [2.91, 1.08]
+      ];
+      for (const [x, z] of wheelPositions) {
+        const wheel = new T.Group(); wheel.position.set(x, .56, z); truck3d.add(wheel); wheelMeshes.push(wheel);
+        const tyre = cylinder(wheel, .47, .47, .30, [0, 0, 0], rubber, 32); tyre.rotation.x = Math.PI / 2;
+        const side = cylinder(wheel, .325, .325, .315, [0, 0, z > 0 ? .008 : -.008], tireSide, 32); side.rotation.x = Math.PI / 2;
+        const hub = cylinder(wheel, .235, .235, .335, [0, 0, 0], metal, 24); hub.rotation.x = Math.PI / 2;
+        const center = cylinder(wheel, .085, .085, .35, [0, 0, 0], navyDark, 20); center.rotation.x = Math.PI / 2;
+        for (let k = 0; k < 8; k++) {
+          const a = k * Math.PI / 4;
+          const bolt = cylinder(wheel, .022, .022, .354, [.16 * Math.sin(a), .16 * Math.cos(a), 0], whiteShade, 8);
+          bolt.rotation.x = Math.PI / 2;
+        }
+      }
+
+      // A handful of subtle motion cues that slide past the truck while it rolls.
+      const roadMat = new T.MeshBasicMaterial({ color: 0xcbd0d4, transparent: true, opacity: .72 });
+      for (let i = 0; i < 9; i++) {
+        const dash = new T.Mesh(new T.BoxGeometry(.72, .018, .035), roadMat);
+        dash.position.set(-7 + i * 1.8, .045, 2.45); scene3d.add(dash); movingBits.push(dash);
+      }
+      const edgeMat = new T.MeshBasicMaterial({ color: 0xe4e6e8, transparent: true, opacity: .8 });
+      const horizon = new T.Mesh(new T.BoxGeometry(38, .014, .025), edgeMat);
+      horizon.position.set(0, .045, 3.25); scene3d.add(horizon);
+
+      threeReady = true;
+      hero.classList.add('three-ready');
+      resizeThreeTruck();
+    } catch (err) {
+      console.warn('3D truck could not initialize; using the built-in animated fallback.', err);
+      if (renderer3d) renderer3d.dispose();
+      renderer3d = null; threeReady = false;
+      hero.classList.remove('three-ready');
+    }
+  }
+
+  function resizeThreeTruck() {
+    if (!renderer3d || !camera3d || !truck3d) return;
+    vw = window.innerWidth;
+    vh = hero.clientHeight || window.innerHeight;
+    mobile3d = vw < 760 || vw <= window.innerHeight;
+    const canvasWidth = Math.max(1, hero.clientWidth);
+    const canvasHeight = Math.max(1, hero.clientHeight);
+    renderer3d.setPixelRatio(Math.min(window.devicePixelRatio || 1, mobile3d ? 1.35 : 1.7));
+    renderer3d.setSize(canvasWidth, canvasHeight, false);
+    camera3d.aspect = canvasWidth / canvasHeight;
+    if (mobile3d) {
+      // A diagonal three-quarter view keeps the full trailer and cab inside narrow screens.
+      cameraHome = { x: .15, y: 6.0, z: 21.2, targetX: 0, targetY: 1.55, targetZ: 0, fov: 45 };
+      truckBaseScale = .98;
+      truckRig3d.rotation.y = .88;
+    } else {
+      // Closer framing makes the truck feel substantial without touching the UI.
+      cameraHome = { x: 3.35, y: 4.45, z: 10.55, targetX: 0, targetY: 1.55, targetZ: 0, fov: 38.5 };
+      truckBaseScale = 1.08;
+      truckRig3d.rotation.y = .10;
+    }
+    truckRig3d.position.set(0, 1.8, 0);
+    truckRig3d.scale.setScalar(truckBaseScale);
+    camera3d.position.set(cameraHome.x, cameraHome.y, cameraHome.z);
+    camera3d.fov = cameraHome.fov;
+    camera3d.lookAt(cameraHome.targetX, cameraHome.targetY, cameraHome.targetZ);
+    camera3d.updateProjectionMatrix();
+    if (shadow3d) {
+      shadow3d.scale.set(mobile3d ? 4.4 : 5.6, mobile3d ? 1.5 : 1.7, 1);
+      shadow3d.position.set(-.15, .035, 0);
+    }
+  }
+
+  function renderThreeTruck(now) {
+    if (!threeReady || !renderer3d || !scene3d || !camera3d || !truck3d || !truckRig3d || !cameraHome) return;
+    const t = now * .001;
+    const baseRotation = mobile3d ? .88 : .10;
+    const narrow = mobile3d;
+
+    // A short opening approach, followed by a continuous cinematic driving loop.
+    const settle = Math.exp(-t * .62);
+    const lateral = Math.sin(t * .48) * (narrow ? .13 : .48) + Math.sin(t * 1.05) * (narrow ? .025 : .09);
+    const forward = (1 - settle) * (narrow ? .18 : .48) + Math.sin(t * .42) * (narrow ? .10 : .34);
+    const scalePulse = 1 - .075 * settle + .034 * Math.sin(t * .78) + .012 * Math.sin(t * 1.7);
+
+    // The rig pivots at the centre of the vehicle: body roll, chassis bounce and
+    // steering are visible, while the trailer stays attached and the wheels spin.
+    truckRig3d.position.x = lateral;
+    truckRig3d.position.y = 1.8 + Math.sin(t * 2.35) * .042 + Math.sin(t * 5.1) * .012;
+    truckRig3d.position.z = forward;
+    truckRig3d.rotation.y = baseRotation + Math.sin(t * .43) * (narrow ? .085 : .205) - (narrow ? .045 : .14) * settle;
+    truckRig3d.rotation.z = Math.sin(t * 1.32) * .026 + Math.sin(t * 2.65) * .010 + Math.sin(t * 4.0) * .018 * settle;
+    truckRig3d.rotation.x = Math.sin(t * 1.08) * .032 + Math.sin(t * 2.2) * .012;
+    truckRig3d.scale.setScalar(truckBaseScale * scalePulse);
+
+    // A gently moving follow camera gives the scene a sense of speed and weight.
+    camera3d.position.x = cameraHome.x + Math.sin(t * .24 + .4) * (narrow ? .11 : .34) - lateral * .18;
+    camera3d.position.y = cameraHome.y + Math.sin(t * .39) * .13;
+    camera3d.position.z = cameraHome.z + Math.sin(t * .29 + .8) * (narrow ? .16 : .40);
+    camera3d.fov = cameraHome.fov + Math.sin(t * .38) * .52;
+    camera3d.lookAt(cameraHome.targetX + lateral * .52, cameraHome.targetY + Math.sin(t * .54) * .035, cameraHome.targetZ + forward * .12);
+    camera3d.updateProjectionMatrix();
+
+    // Faster wheel rotation and passing road marks sell the forward momentum.
+    for (const wheel of wheelMeshes) wheel.rotation.z = -t * 4.9;
+    movingBits.forEach((dash, i) => {
+      const start = -7 + i * 1.8;
+      dash.position.x = ((start + t * 4.35 + 7) % 16) - 7;
+    });
+    renderer3d.render(scene3d, camera3d);
+  }
+
+  function animate(now) {
+    renderThreeTruck(now);
+    requestAnimationFrame(animate);
+  }
+  function onResize() {
+    vw = window.innerWidth;
+    vh = hero.clientHeight || window.innerHeight;
+    resizeThreeTruck();
+  }
+  if (window.THREE) {
+    initThreeTruck();
+  } else {
+    console.warn('Three.js did not load. The built-in truck illustration remains visible.');
+  }
+  window.addEventListener('resize', onResize, { passive: true });
+  window.addEventListener('orientationchange', () => setTimeout(onResize, 150), { passive: true });
+  requestAnimationFrame(animate);
+})();
+</script>
+</body>
+</html>
